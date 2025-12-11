@@ -36,7 +36,7 @@ router.put("/assignteacher/:id", async (req, res) => {
     await classDoc.save();
 
     // Add class to teacher's assignedClasses if not already present
-    if (!teacher.assignedClasses.includes(classId)) {
+    if (!teacher.assignedClasses.some(id => id.equals(classId))) {
       teacher.assignedClasses.push(classId);
       await teacher.save();
     }
